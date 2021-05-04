@@ -13,6 +13,15 @@ object estaEnojado : EstadoDeAnimo() {
         return 0.0
     }
 }
+
+// me queda la duda si la plata en el bolsillo es, como mínimo, el valor del pedido...
+object estaIndiferente : EstadoDeAnimo() {
+    override fun cuantoDejaDePropina(plataEnBolsillo: Double, valorPedido: Double) : Double {
+        return plataEnBolsillo
+    }
+}
+
+
 /*
 object estaFeliz : EstadoDeAnimo(){
     override fun cuantoDejaDePropina() {
@@ -20,11 +29,6 @@ object estaFeliz : EstadoDeAnimo(){
     }
 }
 
-object estaIndiferente : EstadoDeAnimo(){
-    override fun cuantoDejaDePropina() {
-        TODO("Not yet implemented")
-    }
-}
 
 object estaResfriado : EstadoDeAnimo(){
     override fun cuantoDejaDePropina() {
