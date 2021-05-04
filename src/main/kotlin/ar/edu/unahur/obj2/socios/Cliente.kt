@@ -1,21 +1,25 @@
 package ar.edu.unahur.obj2.socios
 
-class Cliente(var estadoQueManeja: EstadoDeAnimo, var plataEnMano: Int, var residencia: LugarDondeVive  ) {
-}
-abstract class EstadoDeAnimo{
-    abstract fun cuantoDejaDePropina()
-}
-object estaEnojado : EstadoDeAnimo() {
-    override fun cuantoDejaDePropina() {
-        TODO("Not yet implemented")
+class Cliente(var estadoQueManeja: EstadoDeAnimo, var plataEnBolsillo: Double, var residencia: LugarDondeVive) {
+    fun darPropina(valorPedido: Double) = estadoQueManeja.cuantoDejaDePropina(plataEnBolsillo, valorPedido)
     }
+
+abstract class EstadoDeAnimo{
+    abstract fun cuantoDejaDePropina(plataEnBolsillo: Double, valorPedido: Double) : Double
 }
 
+object estaEnojado : EstadoDeAnimo() {
+    override fun cuantoDejaDePropina(plataEnBolsillo: Double, valorPedido: Double) : Double {
+        return 0.0
+    }
+}
+/*
 object estaFeliz : EstadoDeAnimo(){
     override fun cuantoDejaDePropina() {
         TODO("Not yet implemented")
     }
 }
+
 object estaIndiferente : EstadoDeAnimo(){
     override fun cuantoDejaDePropina() {
         TODO("Not yet implemented")
@@ -27,6 +31,7 @@ object estaResfriado : EstadoDeAnimo(){
         TODO("Not yet implemented")
     }
 }
+*/
 
 abstract class LugarDondeVive{
     abstract fun calcularBono()
