@@ -3,7 +3,7 @@ package ar.edu.unahur.obj2.socios
 class Cliente(var estadoQueManeja: EstadoDeAnimo, var plataEnBolsillo: Double, var residencia: LugarDondeVive) {
     fun propinaSegunEstadoAnimo(valorPedido: Double) = estadoQueManeja.cuantoDejaDePropina(plataEnBolsillo, valorPedido)
 
-        fun propinaSegunZona(valorPedido: Double) = residencia.modificacionDePropinaPorLugar(this.propinaSegunEstadoAnimo(valorPedido))
+    fun propinaSegunZona(valorPedido: Double) = residencia.modificacionDePropinaPorLugar(this.propinaSegunEstadoAnimo(valorPedido))
 }
 
 abstract class EstadoDeAnimo{
@@ -34,7 +34,6 @@ object estaResfriado : EstadoDeAnimo(){
         return valorPedido
     }
 }
-
 
 abstract class LugarDondeVive{
     abstract fun modificacionDePropinaPorLugar(propina: Double) : Double
