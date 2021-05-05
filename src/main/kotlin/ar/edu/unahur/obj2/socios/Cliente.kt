@@ -1,9 +1,9 @@
 package ar.edu.unahur.obj2.socios
 
 class Cliente(var estadoQueManeja: EstadoDeAnimo, var plataEnBolsillo: Double, var residencia: LugarDondeVive) {
-    fun propinaSinTenerEnCuentaLugar(valorPedido: Double) = estadoQueManeja.cuantoDejaDePropina(plataEnBolsillo, valorPedido)
+    fun propinaSegunEstadoAnimo(valorPedido: Double) = estadoQueManeja.cuantoDejaDePropina(plataEnBolsillo, valorPedido)
 
-    fun propinaConEfectoDelLugar(valorPedido: Double) = residencia.modificacionDePropinaPorLugar(this.propinaSinTenerEnCuentaLugar(valorPedido))
+        fun propinaSegunZona(valorPedido: Double) = residencia.modificacionDePropinaPorLugar(this.propinaSegunEstadoAnimo(valorPedido))
 }
 
 abstract class EstadoDeAnimo{
@@ -16,7 +16,6 @@ object estaEnojado : EstadoDeAnimo() {
     }
 }
 
-// me queda la duda si la plata en el bolsillo es, como mínimo, el valor del pedido... tiene sentido
 object estaIndiferente : EstadoDeAnimo() {
     override fun cuantoDejaDePropina(plataEnBolsillo: Double, valorPedido: Double) : Double {
         return plataEnBolsillo
@@ -30,38 +29,35 @@ object estaFeliz : EstadoDeAnimo(){
 
 }
 
-
 object estaResfriado : EstadoDeAnimo(){
     override fun cuantoDejaDePropina(plataEnBolsillo: Double, valorPedido: Double): Double {
         return valorPedido
     }
-
 }
 
 
 abstract class LugarDondeVive{
     abstract fun modificacionDePropinaPorLugar(propina: Double) : Double
 }
+
 object lasRosas: LugarDondeVive(){
     override fun  modificacionDePropinaPorLugar(propina: Double): Double {
         return propina + 50
     }
-
 }
 
 object lasLauchas : LugarDondeVive(){
     override fun modificacionDePropinaPorLugar(propina: Double) : Double {
        return propina/2
     }
-
 }
 
 object barrioVerde : LugarDondeVive(){
     override fun  modificacionDePropinaPorLugar(propina: Double) : Double {
-       //no me quedo claro lo de minimo de 200
-        return propina + 200    }
-
+        return if (propina <= 200) 200.0 else propina
+    }
 }
+
 object lasTorres : LugarDondeVive() {
     override fun  modificacionDePropinaPorLugar(propina: Double) : Double {
         return propina
