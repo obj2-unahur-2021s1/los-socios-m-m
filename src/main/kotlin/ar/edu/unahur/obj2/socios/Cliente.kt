@@ -21,14 +21,11 @@ object estaIndiferente : EstadoDeAnimo() {
         return plataEnBolsillo
     }
 }
-
-object estaFeliz : EstadoDeAnimo(){
+object estaFeliz : EstadoDeAnimo() {
     override fun cuantoDejaDePropina(plataEnBolsillo: Double, valorPedido: Double): Double {
-        return valorPedido*1.25
+        return valorPedido * 1.25
     }
-
 }
-
 object estaResfriado : EstadoDeAnimo(){
     override fun cuantoDejaDePropina(plataEnBolsillo: Double, valorPedido: Double): Double {
         return valorPedido
